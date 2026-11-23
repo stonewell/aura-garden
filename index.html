@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuraGarden · 流水花园</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; font: 14px/1.5 system-ui, "Microsoft YaHei", sans-serif; color: #1f2a1f; background: #dfeedd; overflow: hidden; }
+    #app { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+    #side { background: #f7faf4; border-right: 1px solid #cfdccb; padding: 14px; overflow-y: auto; }
+    #view { position: relative; }
+    #canvas-host { position: absolute; inset: 0; }
+    h1 { font-size: 18px; margin: 0 0 10px; }
+    h2 { font-size: 13px; margin: 16px 0 6px; color: #4a6a45; text-transform: uppercase; letter-spacing: .04em; }
+    .row { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+    input[type=number] { width: 100%; padding: 4px 6px; border: 1px solid #b9cbb4; border-radius: 4px; }
+    button { padding: 6px 10px; border: 1px solid #8fb08a; background: #fff; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #eaf4e6; }
+    button.primary { background: #3f8f3f; color: #fff; border-color: #3f8f3f; }
+    button.primary:hover { background: #357a35; }
+    button.active { background: #3f8f3f; color: #fff; }
+    #status { font-size: 12px; color: #6a7a66; min-height: 18px; }
+    #notes { margin: 6px 0 0; padding-left: 18px; font-size: 12px; }
+    .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; font-size: 12px; }
+    .stats b { color: #2f5a2f; }
+    #palette { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .sp { text-align: left; padding: 6px; }
+    .sp.active { background: #3f8f3f; color: #fff; }
+    .bar { height: 4px; border-radius: 2px; background: #d6e2d2; margin-top: 3px; overflow: hidden; }
+    .bar > i { display: block; height: 100%; background: #6bbf5b; }
+    #timeline { position: absolute; left: 14px; right: 14px; bottom: 14px; background: rgba(255,255,255,.92); border-radius: 10px; padding: 10px 14px; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+    #timeline input[type=range] { flex: 1; }
+    #wx { font-size: 12px; color: #405040; min-width: 280px; }
+    #hud { position: absolute; top: 14px; right: 14px; background: rgba(255,255,255,.92); border-radius: 10px; padding: 8px 12px; font-size: 12px; min-width: 200px; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+    .fc { color: #2a7f2a; } .cl { color: #8a7a2a; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <aside id="side">
+      <h1>🌿 AuraGarden 流水花园</h1>
+
+      <h2>1 · 定位与照片</h2>
+      <div class="row">
+        <input id="lat" type="number" step="0.0001" placeholder="纬度" />
+        <input id="lon" type="number" step="0.0001" placeholder="经度" />
+      </div>
+      <div class="row">
+        <button id="btn-gps">📍 GPS 定位</button>
+        <label style="flex:1"><input id="photo" type="file" accept="image/*" style="width:100%;font-size:12px" /></label>
+      </div>
+      <div class="row"><button id="btn-gen" class="primary" style="flex:1">✨ 生成花园</button></div>
+      <div id="status"></div>
+
+      <h2>2 · 场地分析 (mock)</h2>
+      <div class="stats" id="soil">尚未生成</div>
+      <ul id="notes"></ul>
+
+      <h2>3 · 布局编辑</h2>
+      <div class="row">
+        <button id="tool-place" class="active" style="flex:1">🌱 种植</button>
+        <button id="tool-remove" style="flex:1">🧹 铲除</button>
+        <button id="btn-clear">清空</button>
+      </div>
+      <div id="palette"></div>
+      <div id="hint" style="font-size:12px;color:#6a7a66;margin-top:6px">点击地面种植;拖拽旋转视角;滚轮缩放。编辑会回到“今天”并重新预测。</div>
+    </aside>
+
+    <main id="view">
+      <div id="canvas-host"></div>
+      <div id="hud"></div>
+      <div id="timeline">
+        <div class="row">
+          <button id="btn-play">▶ 播放</button>
+          <input id="slider" type="range" min="0" max="90" value="0" />
+          <select id="speed"><option value="600">慢</option><option value="250" selected>中</option><option value="80">快</option></select>
+        </div>
+        <div id="wx"></div>
+      </div>
+    </main>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
