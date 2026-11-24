@@ -1,4 +1,72 @@
+# Web 原型(已退役,#130)
 node_modules
 dist
 
+# 第三方参考论文
 docs/references/
+
+# Unity 生成目录
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+/[Rr]ecordings/
+
+# Unity 自动生成的工程文件(只忽略仓库根目录的)
+# 注意:Unity 工程目录和纯 C# 模拟程序集的位置在 #128/#131 确定后需要回来核对,
+# 模拟程序集自己的 .csproj/.sln 必须提交,不能被这里误忽略
+/*.csproj
+/*.sln
+/*.suo
+/*.user
+*.userprefs
+*.pidb
+*.booproj
+*.unityproj
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+
+# Unity 构建产物与崩溃日志
+*.apk
+*.aab
+*.unitypackage
+*.app
+*.ipa
+sysinfo.txt
+crashlytics-build.properties
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# iOS 导出的 Xcode 工程中的用户数据
+xcuserdata/
+*.xcuserstate
+
+# .NET
+[Bb]in/
+[Oo]bj/
+*.nupkg
+TestResults/
+
+# 编辑器与 IDE
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+
+# 操作系统
+.DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# Claude Code 本地设置(可能含私有配置)
+.claude/settings.local.json

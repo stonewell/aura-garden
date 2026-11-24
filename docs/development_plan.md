@@ -327,5 +327,5 @@ M0 出口:C# 模拟通过 x86 与 ARM 上的回归夹具,积温与生命周期�
 |---|---|---|---|
 | 133 | 评审:项目能否在 Linux、macOS 上开发,不限于 Windows | 完成 | 结果见 design.md「开发环境与跨平台」 |
 | 134 | 核实各平台构建矩阵:所选 Unity 版本的 Editor 支持系统、IL2CPP 与 Mono 的跨平台构建限制、iOS/macOS 构建需要的主机、Steam Deck(Linux 原生)构建与测试方式、AR Foundation 的真机调试要求 | 待办 | 需查 Unity 官方文档并实测,不凭记忆;结果写入 design.md,并先于 #128、#29;另需验证 xtool(github.com/xtool-org/xtool)能否在 Linux 上构建并签名 Unity 导出的 Xcode 工程、Unity iOS 工程导出是否必须在 macOS、Xcode SDK 在非 Apple 硬件上的许可问题(需法务确认),见 design.md「候选:xtool」 |
-| 135 | 仓库跨平台卫生:`.gitattributes`(统一 LF,JSON 夹具与脚本不得被 CRLF 改写)、`.gitignore` 增加 Unity/.NET/macOS 条目、Unity 文本序列化与 `.meta` 提交规则、Git LFS 策略、路径大小写规则;构建与测试脚本以 `dotnet` CLI 和跨平台脚本为准,不只提供 `.ps1`/`.bat` | 待办 | 依赖 #131;与 #128 一起做;AGENTS.md 的约定已增加(「跨平台开发规则」),`.gitattributes` 与 `.gitignore` 等文件本身尚未创建 |
+| 135 | (部分完成)仓库跨平台卫生:`.gitattributes`(统一 LF,JSON 夹具与脚本不得被 CRLF 改写)、`.gitignore` 增加 Unity/.NET/macOS 条目、Unity 文本序列化与 `.meta` 提交规则、Git LFS 策略、路径大小写规则;构建与测试脚本以 `dotnet` CLI 和跨平台脚本为准,不只提供 `.ps1`/`.bat` | 待办 | 依赖 #131;与 #128 一起做;AGENTS.md 的约定已增加(「跨平台开发规则」),`.gitattributes` 与 `.gitignore` 等文件本身尚未创建 |
 | 136 | CI 矩阵:Linux(`dotnet test` x86、Unity 构建)、macOS(Apple Silicon 上的回归夹具、iOS/macOS 构建)、Windows(Windows 构建) | 待办 | 依赖 #131、#134;#28 要求夹具在 x86 与 ARM 都通过,macOS ARM 可兼作 ARM 验证;需先确认可用的 CI 与运行器 |
